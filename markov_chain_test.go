@@ -10,7 +10,7 @@ func TestChooseReturnsRandomWord(t *testing.T) {
 	chain := markovian.NewMarkovChain(map[string][]string{
 		"test": {"foo", "bar"},
 	}, 1)
-	err, choice := chain.Choose(markovian.NewNgram("test"))
+	choice, err := chain.Choose(markovian.NewNgram("test"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -23,7 +23,7 @@ func TestChooseReturnsErrorIfKeyDoesNotExist(t *testing.T) {
 	chain := markovian.NewMarkovChain(map[string][]string{
 		"test": {"foo", "bar"},
 	}, 1)
-	err, _ := chain.Choose(markovian.NewNgram("DNE"))
+	_, err := chain.Choose(markovian.NewNgram("DNE"))
 	if err == nil {
 		t.Fatal(err)
 	}

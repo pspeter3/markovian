@@ -14,20 +14,20 @@ type MarkovChain struct {
 	ngramSize int
 }
 
-func (m *MarkovChain) Choose(ngram Ngram) (error, string) {
+func (m *MarkovChain) Choose(ngram Ngram) (string, error) {
 	choices := m.graph[ngram.ToKey()]
 	size := len(choices)
 	if size == 0 {
-		return errors.New("No more choices"), ""
+		return "", errors.New("No more choices")
 	}
-	return nil, choices[rand.Intn(size)]
+	return choices[rand.Intn(size)], nil
 }
 
 func (m *MarkovChain) Generate(numWords int) string {
 	ngram := make(Ngram, m.ngramSize)
 	var words []string
 	for i := 0; i < numWords; i++ {
-		err, nextWord := m.Choose(ngram)
+		nextWord, err := m.Choose(ngram)
 		if err != nil {
 			break
 		}

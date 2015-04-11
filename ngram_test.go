@@ -15,6 +15,13 @@ func TestConstructor(t *testing.T) {
 	}
 }
 
+func TestNext(t *testing.T) {
+	ngram := markovian.NewNgram("hello world")
+	next := ngram.Next("today")
+	if next.ToKey() != "world today" {
+		t.Fatalf("%s was not world today", next.ToKey())
+	}
+}
 func TestToKey(t *testing.T) {
 	ngram := make(markovian.Ngram, 2)
 	ngram[0] = "hello"

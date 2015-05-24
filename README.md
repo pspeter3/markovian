@@ -1,4 +1,6 @@
-# markovian [![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url]
+# markovian
+
+[![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url]
 
 This is just an example library to learn more about Go and Markov Models
 
